@@ -46,7 +46,7 @@ For AI-powered transcript summaries:
 # Install Ollama from https://ollama.ai
 
 # Pull a recommended model
-ollama pull qwen2.5:7b
+ollama pull qwen3:7b
 ```
 
 Recommended models for summarization:
