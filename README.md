@@ -42,6 +42,17 @@ ollama pull qwen2.5:7b
 Recommended models for summarization:
 - **qwen3:8b** - Best balance of quality and speed
 
+## Raycast Integration
+
+Launch the transcriber from anywhere with [Raycast](https://raycast.com):
+
+1. Open Raycast Settings (`Cmd+,`)
+2. Go to **Extensions** → **Script Commands**
+3. Click **Add Directories** and select the `scripts/` folder from this project
+4. Type **"Local Transcriber"** in Raycast to launch
+
+The script will start the app if it's not running, or open the existing instance in your browser. You can assign a global hotkey to it in Raycast's extension settings.
+
 ## Usage
 
 1. **Transcribe**: Record or upload audio, select model and language
