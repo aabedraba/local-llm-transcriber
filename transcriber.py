@@ -6,7 +6,7 @@ from faster_whisper import WhisperModel
 _model_cache: dict[str, WhisperModel] = {}
 
 
-def _get_model(model_size: str) -> WhisperModel:
+def get_model(model_size: str) -> WhisperModel:
     """Return a cached WhisperModel instance, loading it if necessary."""
     if model_size not in _model_cache:
         _model_cache[model_size] = WhisperModel(
@@ -30,7 +30,7 @@ def transcribe(
     Returns:
         List of segment dicts with keys "start", "end", "text".
     """
-    model = _get_model(model_size)
+    model = get_model(model_size)
     segments, info = model.transcribe(
         file_path,
         language=language,

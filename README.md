@@ -28,6 +28,14 @@ uv run main.py
 
 The app will open in your browser automatically.
 
+### Development Mode
+
+Run with hot reload to automatically pick up code changes:
+
+```bash
+uv run gradio main.py
+```
+
 ## Ollama Setup (Optional)
 
 For AI-powered transcript summaries:
