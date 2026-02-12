@@ -2,7 +2,9 @@
 
 Local-only transcription with summarization for your private voice notes. No data leaves your machine.
 
-[![Demo](assets/screenshot.png)]
+Use it as a [Raycast extension](#raycast-integration).
+
+![Demo](assets/screenshot.png)
 
 ## Features
 
@@ -23,7 +25,7 @@ Local-only transcription with summarization for your private voice notes. No dat
 uv sync
 
 # Run the app
-uv run main.py
+uv run local-transcriber
 ```
 
 The app will open in your browser automatically.
@@ -33,7 +35,7 @@ The app will open in your browser automatically.
 Run with hot reload to automatically pick up code changes:
 
 ```bash
-uv run gradio main.py
+uv run gradio src/local_llm_transcriber/app.py
 ```
 
 ## Ollama Setup (Optional)

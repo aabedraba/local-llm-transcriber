@@ -8,10 +8,7 @@ from pathlib import Path
 import gradio as gr
 from faster_whisper import WhisperModel
 
-import exporter
-import models
-import summarizer
-import transcriber
+from . import exporter, models, summarizer, transcriber
 
 
 # ── Helper functions ──
@@ -453,5 +450,10 @@ with gr.Blocks(title="Local LLM Transcriber") as demo:
     )
 
 
-if __name__ == "__main__":
+def main():
+    """Launch the Local LLM Transcriber app."""
     demo.launch(inbrowser=True, theme=gr.themes.Soft())
+
+
+if __name__ == "__main__":
+    main()

@@ -26,7 +26,7 @@ fi
 
 # Launch the app in the background
 cd "$PROJECT_DIR" || exit 1
-nohup "$UV" run gradio main.py &>/dev/null &
+nohup "$UV" run local-transcriber &>/dev/null &
 
 # Wait for the server to be ready (up to 30s)
 for i in $(seq 1 60); do
