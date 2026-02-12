@@ -1,6 +1,8 @@
 # Local LLM Transcriber
 
-Local-only audio/video transcription with summarization. No data leaves your machine.
+Local-only transcription with summarization for your private voice notes. No data leaves your machine.
+
+[![Demo](assets/screenshot.png)]
 
 ## Features
 
