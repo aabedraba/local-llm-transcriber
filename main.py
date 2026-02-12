@@ -18,23 +18,48 @@ import transcriber
 
 
 def run_transcription(file, model_size, language):
-    """Transcribe a recorded audio file and return segments + display text."""
+    """Transcribe a recorded audio file and yield incremental updates."""
     if file is None:
         gr.Warning("Please record audio first.")
-        return [], "", "No audio recorded"
+        yield [], "", "No audio recorded"
+        return
 
     lang = None if language == "Auto-detect" else language
 
     try:
-        segments = transcriber.transcribe(file, model_size=model_size, language=lang)
+        yield [], "", f"Loading model '{model_size}'..."
+
+        model = transcriber.get_model(model_size)
+
+        yield [], "", "Transcribing..."
+
+        segment_iter, info = model.transcribe(
+            file,
+            language=lang,
+            vad_filter=True,
+            word_timestamps=True,
+            initial_prompt="Transcribe with proper grammar, punctuation, and sentence structure.",
+        )
+        duration = info.duration
+
+        segments = []
+        for s in segment_iter:
+            segments.append({"start": s.start, "end": s.end, "text": s.text.strip()})
+            text = exporter.to_txt(segments)
+            if duration:
+                pct = min(int(s.end / duration * 100), 99)
+                yield segments, text, f"Transcribing... {pct}%"
+            else:
+                yield segments, text, f"Transcribing... ({len(segments)} segments)"
+
         text = exporter.to_txt(segments)
         status = f"Transcribed {len(segments)} segments"
         if language == "Auto-detect":
-            status += " (language auto-detected)"
-        return segments, text, status
+            status += f" (detected: {info.language})"
+        yield segments, text, status
     except Exception as e:
         gr.Warning(f"Transcription failed: {e}")
-        return [], "", f"Error: {e}"
+        yield [], "", f"Error: {e}"
 
 
 def export_transcript(segments, fmt):
@@ -279,6 +304,7 @@ with gr.Blocks(title="Local LLM Transcriber") as demo:
                 fn=run_transcription,
                 inputs=[audio_input, model_dropdown, language_dropdown],
                 outputs=[segments_state, transcript_output, status_display],
+                show_progress="hidden",
             )
 
         # ── Tab 2: Batch ──────────────────────────────────────────────
