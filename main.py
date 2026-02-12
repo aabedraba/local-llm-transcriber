@@ -1,4 +1,4 @@
-"""LocalVibe - Local-only audio/video transcription app."""
+"""Local LLM Transcriber - Local-only audio/video transcription app."""
 
 import shutil
 import tempfile

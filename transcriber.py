@@ -36,6 +36,7 @@ def transcribe(
         language=language,
         vad_filter=True,
         word_timestamps=True,
+        initial_prompt="Transcribe with proper grammar, punctuation, and sentence structure.",
     )
     return [
         {"start": s.start, "end": s.end, "text": s.text.strip()}
