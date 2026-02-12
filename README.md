@@ -23,7 +23,7 @@ Local-only transcription with summarization for your private voice notes. No dat
 uv sync
 
 # Run the app
-uv run python app.py
+uv run main.py
 ```
 
 The app will open in your browser automatically.
